@@ -1,7 +1,8 @@
-var express = require('express');
+import express from 'express';
+
 var app = express();
-const Blockchain = require('../blockchain');
-const { v1: uuidv1 } = require('uuid');
+import { Blockchain } from '../blockchain';
+import { v1 as uuidv1 } from 'uuid';
 
 const crypto = new Blockchain();
 
@@ -28,7 +29,7 @@ app.post('/transaction', function (req, res) {
 });
 
 app.get('/mine', function (req, res) {
-  const lastBlock = crypto.getLastBlock();
+  const lastBlock = crypto.getLastBlock;
   const prevBlockHash = lastBlock['hash'];
   const currentBlockData = {
     transactions: crypto.pendingTransactions,
@@ -51,7 +52,7 @@ app.get('/mine', function (req, res) {
 app.get('/blockchain', function (req, res) {
   res.json({
     crypto,
-    lastBlock: crypto.getLastBlock(),
+    lastBlock: crypto.getLastBlock,
   });
 });
 

@@ -1,8 +1,7 @@
-const Blockchain = require('./blockchain');
-
+import { Blockchain } from './blockchain';
 const crypto = new Blockchain();
 
-const prevBlockHash = crypto.getLastBlock()['hash'];
+const prevBlockHash = crypto.getLastBlock['hash'];
 const currentBlockData = [
   {
     amount: 200,
