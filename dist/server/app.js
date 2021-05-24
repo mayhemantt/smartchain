@@ -26,10 +26,10 @@ app.get('/mine', function (req, res) {
     const lastBlock = crypto.getLastBlock;
     const prevBlockHash = lastBlock['hash'];
     const currentBlockData = {
-        transactions: crypto.pendingTransactions,
+        transactions: crypto.getPendingTransactions,
         index: lastBlock['index'] + 1,
     };
-    const nonce = crypto.proofOfWork(prevBlockHash, newBlock);
+    const nonce = crypto.proofOfWork(prevBlockHash, currentBlockData);
     const blockHash = crypto.hashBlock(prevBlockHash, currentBlockData, nonce);
     crypto.createNewTransaction(12.5, '00', nodeAddress);
     const newBlock = crypto.createNewBlock(nonce, prevBlockHash, blockHash);

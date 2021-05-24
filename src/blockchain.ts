@@ -6,14 +6,17 @@ export const blockType = () => {
 };
 
 export class Blockchain {
-  private chain: typeof newBlock[] | [] = [];
-  private pendingTransactions: transaction[] | [] = [];
+  private chain: typeof newBlock[] | [];
+  private pendingTransactions: transaction[] | [];
 
   constructor() {
     this.chain = [];
     this.pendingTransactions = [];
 
     this.createNewBlock(100, '0', '0');
+  }
+  get getPendingTransactions(): transaction[] {
+    return this.pendingTransactions;
   }
 
   createNewBlock(

@@ -32,12 +32,19 @@ app.get('/mine', function (req, res) {
   const lastBlock = crypto.getLastBlock;
   const prevBlockHash = lastBlock['hash'];
   const currentBlockData = {
-    transactions: crypto.pendingTransactions,
+    transactions: crypto.getPendingTransactions,
     index: lastBlock['index'] + 1,
   };
 
-  const nonce = crypto.proofOfWork(prevBlockHash, newBlock);
-  const blockHash = crypto.hashBlock(prevBlockHash, currentBlockData, nonce);
+  const nonce = crypto.proofOfWork(
+    prevBlockHash,
+    currentBlockData as typeof newBlock
+  );
+  const blockHash = crypto.hashBlock(
+    prevBlockHash,
+    currentBlockData as typeof newBlock,
+    nonce
+  );
 
   crypto.createNewTransaction(12.5, '00', nodeAddress);
 

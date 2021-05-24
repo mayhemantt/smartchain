@@ -12,8 +12,6 @@ const blockType = () => {
 exports.blockType = blockType;
 class Blockchain {
     constructor() {
-        this.chain = [];
-        this.pendingTransactions = [];
         this.createNewTransaction = (amount, sender, recipient) => {
             const NewTransaction = {
                 amount,
@@ -42,6 +40,9 @@ class Blockchain {
         this.chain = [];
         this.pendingTransactions = [];
         this.createNewBlock(100, '0', '0');
+    }
+    get getPendingTransactions() {
+        return this.pendingTransactions;
     }
     createNewBlock(nonce, prevBlockHash, hash) {
         const newBlock = {
